@@ -1,7 +1,7 @@
 # BUILD-A-TOOL-TO-MONITOR-CHANGES-IN-FILES-BY-CALCULATING-AND-COMPARING-HASH-VALUES.
 This Python-based tool is designed to monitor files for integrity by calculating and comparing hash values. It helps ensure that the content of a file has not been modified, either due to accidental changes, corruption, or unauthorized tampering. The tool regularly checks the file's hash and alerts users if any alterations are detected.
 
-Key Features:
+KEY FEATURES:
 File Hashing: The tool calculates a cryptographic hash (e.g., SHA-256) of a given file. A hash function generates a unique string (hash) for the content of the file. Even a small change in the file will produce a completely different hash.
 
 Regular Monitoring: The tool runs continuously and checks the file at specified intervals. It compares the current hash of the file with the previously stored hash.
@@ -14,7 +14,7 @@ Hash Algorithm: Users can choose from different cryptographic hash algorithms su
 Check Interval: The time interval between each check can be adjusted, allowing the user to monitor files as frequently as needed (e.g., every 10 seconds, every minute).
 Cross-platform Compatibility: The tool is built using Python, making it platform-independent. It can run on Windows, macOS, and Linux.
 
-How It Works:
+HOW IT WORKS:
 Initial Setup:
 
 The tool calculates the initial hash of the specified file (e.g., example.txt).
