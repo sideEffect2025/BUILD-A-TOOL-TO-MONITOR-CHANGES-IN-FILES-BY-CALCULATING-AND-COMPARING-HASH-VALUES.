@@ -13,13 +13,15 @@ MENTOR: NEELA SANTHOSH KUMAR
 
 # OVERVIEW:
 This tool is designed to monitor changes in files by calculating and comparing their hash values. The main purpose of this tool is to detect any modifications, additions, or deletions in files over time by comparing their hash values, which are unique strings generated based on the file contents. Hash values serve as fingerprints for files, ensuring a fast and reliable way to detect changes without needing to compare the entire content of the files.
-Key Features:
+
+# Key Features:
 
 # Hash Calculation:
 
 The tool generates hash values (e.g., SHA-256 or MD5) for each file in a given directory or multiple directories.
 The hash is calculated using the file's content, ensuring that any change in the file (even the smallest modification) will result in a different hash value.
-File Monitoring:
+
+# File Monitoring:
 
 The tool continuously monitors the specified files or directories for any changes, additions, or deletions.
 It performs a comparison of the current hash values with previously stored values to detect modifications.
