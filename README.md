@@ -12,6 +12,41 @@ DOMAIN: CYBER SECURITY & ETHICAL HACKING
 MENTOR: NEELA SANTHOSH KUMAR
 
 # OVERVIEW:
-The File Integrity Monitoring Tool is designed to automatically monitor files for changes by calculating and comparing their cryptographic hash values. Hash functions produce unique values for a file's content, so any change in the file will result in a different hash. This tool helps detect any unauthorized or accidental alterations to files, providing real-time alerts when changes occur.
+This tool is designed to monitor changes in files by calculating and comparing their hash values. The main purpose of this tool is to detect any modifications, additions, or deletions in files over time by comparing their hash values, which are unique strings generated based on the file contents. Hash values serve as fingerprints for files, ensuring a fast and reliable way to detect changes without needing to compare the entire content of the files.
+Key Features:
 
-The tool uses hashing algorithms like SHA-256, MD5, or SHA-1 to generate hashes, and it continuously checks the file for changes at predefined intervals. This ensures the integrity and security of files, making it an essential tool for system administrators, security experts, and anyone requiring reliable file monitoring.
+# Hash Calculation:
+
+The tool generates hash values (e.g., SHA-256 or MD5) for each file in a given directory or multiple directories.
+The hash is calculated using the file's content, ensuring that any change in the file (even the smallest modification) will result in a different hash value.
+File Monitoring:
+
+The tool continuously monitors the specified files or directories for any changes, additions, or deletions.
+It performs a comparison of the current hash values with previously stored values to detect modifications.
+
+# Change Detection:
+
+If the hash value of a file changes, the tool flags it as modified.
+New files will be detected by the absence of a previously stored hash.
+Deleted files will be flagged if their hash value is no longer present.
+
+# Efficient Storage and Reporting:
+
+The tool can store hash values of files in a database or file for easy reference and comparison.
+It generates logs or reports detailing the files that have changed, been added, or deleted, along with timestamps for each event.
+
+# Customization:
+
+Users can choose specific directories to monitor.
+It can be configured to run periodically or in real-time, depending on system resources and user preference.
+Various hash algorithms (e.g., MD5, SHA-1, SHA-256) can be selected based on the level of security and performance desired. 
+
+# Security & Integrity:
+
+Hashing ensures that file integrity is maintained, and unauthorized modifications can be easily detected.
+It can be used in scenarios where maintaining the integrity of critical files is important, such as system files, configuration files, and security logs.
+
+# Performance Considerations:
+
+The tool operates efficiently by focusing only on files whose hashes have changed, instead of scanning and comparing full file contents.
+It can handle large file systems and be scaled for use in enterprise environments, with options for logging and alerting users when changes occur.
