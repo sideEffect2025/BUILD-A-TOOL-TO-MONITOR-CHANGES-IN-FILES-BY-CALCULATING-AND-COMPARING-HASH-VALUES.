@@ -1,0 +1,69 @@
+import os
+import hashlib
+import time
+
+# Function to calculate the hash of a file
+def calculate_hash(file_path, hash_algo='sha256'):
+    """Calculates the hash of a given file using the specified hash algorithm."""
+    hash_func = getattr(hashlib, hash_algo)()  # Choose hash algorithm (e.g., sha256)
+    
+    with open(file_path, 'rb') as file:
+        while chunk := file.read(8192):  # Read file in chunks
+            hash_func.update(chunk)
+    
+    return hash_func.hexdigest()  # Return the hexadecimal hash value
+
+# Function to monitor file changes
+def monitor_files(directory, interval=60, hash_algo='sha256'):
+    """Monitors a directory for file changes by comparing hash values."""
+    known_hashes = {}  # Store the initial hash values of files
+    
+    # Initial scan to generate hash values of existing files
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            file_path = os.path.join(root, file)
+            try:
+                file_hash = calculate_hash(file_path, hash_algo)
+                known_hashes[file_path] = file_hash
+                print(f"Initial hash for {file_path}: {file_hash}")
+            except Exception as e:
+                print(f"Error calculating hash for {file_path}: {e}")
+    
+    print(f"Monitoring {directory} for changes...\n")
+    
+    # Start monitoring for file changes
+    while True:
+        time.sleep(interval)  # Wait for the specified interval before re-scanning
+        
+        current_hashes = {}  # Store current hash values of files
+        
+        # Scan files and compare hash values
+        for root, dirs, files in os.walk(directory):
+            for file in files:
+                file_path = os.path.join(root, file)
+                try:
+                    current_hash = calculate_hash(file_path, hash_algo)
+                    current_hashes[file_path] = current_hash
+                    
+                    # Check if the file's hash has changed or if it's a new file
+                    if file_path not in known_hashes:
+                        print(f"New file detected: {file_path}")
+                        print(f"Hash: {current_hash}")
+                    elif known_hashes[file_path] != current_hash:
+                        print(f"File modified: {file_path}")
+                        print(f"Old Hash: {known_hashes[file_path]}")
+                        print(f"New Hash: {current_hash}")
+                
+                except Exception as e:
+                    print(f"Error calculating hash for {file_path}: {e}")
+        
+        # Update the known hashes with the current ones
+        known_hashes = current_hashes
+
+# Example usage
+if __name__ == "__main__":
+    # Directory to monitor
+    directory_to_monitor = "./monitor_directory"
+    
+    # Call the function to start monitoring the directory
+    monitor_files(directory_to_monitor, interval=30, hash_algo='sha256')
